@@ -1,9 +1,6 @@
 source ~/.profile
 source ~/.bashrc
 
-MYSQL=/usr/local/mysql/bin
-export PATH=$PATH:$MYSQL
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 PATH=$PATH:/usr/local/sbin
 
 # java config
@@ -16,8 +13,7 @@ export GROOVY_HOME=/usr/local/opt/groovy/libexec
 # for color
 export CLICOLOR=1
 
-### Prompt Colors
-# Modified version of @gf3’s Sexy Bash Prompt (https://github.com/gf3/dotfiles)
+## Prompt Colors: Modified version of @gf3’s Sexy Bash Prompt (https://github.com/gf3/dotfiles)
 if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
   export TERM=gnome-256color
 elif infocmp xterm-256color >/dev/null 2>&1; then
@@ -55,7 +51,7 @@ export PURPLE
 export BOLD
 export RESET
 
-### Git branch details
+# Git branch details
 function parse_git_dirty() {
   [[ $(git status 2> /dev/null | tail -n1) != *"working tree clean"* ]] && echo "*"
 }
@@ -64,16 +60,15 @@ function parse_git_branch() {
 }
 
 
-
-### Change this symbol to something sweet. (http://en.wikipedia.org/wiki/Unicode_symbols)
+# Change this symbol to something sweet. (http://en.wikipedia.org/wiki/Unicode_symbols)
 symbol="😄 😄 ⚡ "
 export PS1="\[${MAGENTA}\]\u \[$RESET\]in \[$GREEN\]\w\[$RESET\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$RESET\]\n$symbol\[$RESET\]"
 export PS2="\[$ORANGE\]→ \[$RESET\]"
 
 
 
-### Misc
-# Only show the current directory's name in the tab
+# Misc
+## Only show the current directory's name in the tab
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 # alias
